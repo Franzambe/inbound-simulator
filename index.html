@@ -46,7 +46,14 @@ th{font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--mu
 tbody tr:hover td{background:var(--soft)}tr.click{cursor:pointer}
 details.fold>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}details.fold>summary::-webkit-details-marker{display:none}details.fold>summary h2{margin:0}details.fold>summary::before{content:"▸";color:var(--mut);font-size:13px;transition:transform .15s}details.fold[open]>summary::before{transform:rotate(90deg)}.fsum{font-size:12.5px}
 .kch{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.kch button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:4px 12px;font-size:12.5px;cursor:pointer}.kch button.on{background:var(--acc);color:#fff;border-color:var(--acc)}.kch button b{font-weight:700}.kch .ex{border:0;color:var(--mut)}
-.tile.clk{cursor:pointer}.legend .lg.off{opacity:.35;text-decoration:line-through}tr.drill>td{background:var(--soft)}.dbox{margin:6px 0 10px;padding:12px;border:2px solid var(--acc);border-radius:10px;background:var(--card)}.dbox table{width:100%}.tile.on{outline:2px solid var(--acc)}
+.tile.clk{cursor:pointer}.legend .lg.off{opacity:.35;text-decoration:line-through}tr.drill>td{background:var(--soft)}
+#covTab{position:relative}table.cov{border-collapse:separate;border-spacing:0}table.cov>thead th{position:sticky;top:0;z-index:3;background:var(--head,var(--card))}
+table.cov>thead th:nth-child(-n+4),table.cov>tbody>tr:not(.drill)>td:nth-child(-n+4){position:sticky;background:var(--card);z-index:2}table.cov>thead th:nth-child(-n+4){z-index:4}
+table.cov>thead th:nth-child(1),table.cov>tbody>tr:not(.drill)>td:nth-child(1){left:0;min-width:58px;max-width:58px}
+table.cov>thead th:nth-child(2),table.cov>tbody>tr:not(.drill)>td:nth-child(2){left:58px;min-width:190px;max-width:190px;white-space:normal}
+table.cov>thead th:nth-child(3),table.cov>tbody>tr:not(.drill)>td:nth-child(3){left:248px;min-width:72px;max-width:72px}
+table.cov>thead th:nth-child(4),table.cov>tbody>tr:not(.drill)>td:nth-child(4){left:320px;min-width:76px;max-width:76px;box-shadow:inset -2px 0 0 var(--line)}
+table.cov>tbody>tr.sel:not(.drill)>td:nth-child(-n+4){background:var(--zero)}tr.drill .dbox{position:sticky;left:0;max-width:calc(100vw - 90px)}tr.drill .dbox>table{display:block;overflow-x:auto}.dbox{margin:6px 0 10px;padding:12px;border:2px solid var(--acc);border-radius:10px;background:var(--card)}.dbox table{width:100%}.tile.on{outline:2px solid var(--acc)}
 .muted{color:var(--mut,#999)}tr.grp td{background:var(--soft)}tr.tot td{border-top:2px solid currentColor;background:var(--soft)}.neg{background:rgba(220,40,40,.16)!important;color:#c00000;font-weight:700}.cov td.clk{cursor:pointer;text-decoration:underline dotted}tr.sel td{background:var(--zero)!important}
 .scroll{max-height:460px;overflow:auto}.wide{overflow-x:auto}
 .note{font-size:12px;color:var(--mut);line-height:1.5}.f{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12.5px;margin:8px 0;line-height:1.5;color:var(--mut)}
@@ -66,13 +73,13 @@ details.card summary{cursor:pointer;font-weight:700;font-size:15px}
 @media(max-width:1150px){.grid2,.grid2b{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
 <header><h1>📦 <span data-i="title"></span></h1>
-<nav id="nav"><button data-p="buy" class="on" data-i="tab_buy"></button><button data-p="dm" data-i="tab_dm"></button><button data-p="roll" data-i="tab_roll"></button><button data-p="pc" data-i="tab_pc"></button><button data-p="map" data-i="tab_map"></button><button data-p="par" data-i="tab_par"></button><button data-p="prm" data-i="tab_prm"></button><button data-p="gui" data-i="tab_gui"></button></nav>
+<nav id="nav"><button data-p="buy" data-i="tab_buy"></button><button data-p="dm" data-i="tab_dm"></button><button data-p="roll" class="on" data-i="tab_roll"></button><button data-p="pc" data-i="tab_pc"></button><button data-p="map" data-i="tab_map"></button><button data-p="par" data-i="tab_par"></button><button data-p="prm" data-i="tab_prm"></button><button data-p="gui" data-i="tab_gui"></button></nav>
 <div class="hbtn"><button class="hb" id="bHelp" aria-expanded="false">?</button><button class="hb" id="bLang"></button><button class="hb" id="bTheme" aria-label="Tema"></button><button class="hb" id="bExp" data-i="exp"></button><button class="hb" id="bImp" data-i="imp"></button><button class="hb" id="bRes" data-i="res"></button><input type="file" id="fImp" accept=".json,.xlsx,.xls,.csv" style="display:none"></div>
 </header>
 <div class="help" id="help" data-i="howto"></div>
 
 <!-- ===================== COSA COMPRARE ===================== -->
-<section class="page on" id="p-buy">
+<section class="page" id="p-buy">
 <div class="card" style="padding:10px 14px"><div class="ctl" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
 <div class="seg" id="sgBG"><button data-v="M" class="on" data-i="month"></button><button data-v="W" data-i="week"></button></div><label><span data-i="period"></span> <select id="bMon"></select></label><span id="bTy"></span><label><span data-i="plant"></span> <select id="bPl"></select></label><label><span data-i="macro"></span> <select id="bMc"></select></label>
 <div class="pills" id="bPills"></div><button class="btn" id="bClr" data-i="clear"></button>
@@ -115,7 +122,7 @@ details.card summary{cursor:pointer;font-weight:700;font-size:15px}
 </section>
 
 <!-- ===================== ESPLOSIONE ROLLING ===================== -->
-<section class="page" id="p-roll">
+<section class="page on" id="p-roll">
 <div class="card" style="padding:12px 14px"><div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
 <div class="seg" id="sgRV"><button data-v="cov" class="on" data-i="r_cov"></button><button data-v="exp" data-i="r_exp"></button></div><div class="seg" id="sgR"><button data-v="D" data-i="r_day"></button><button data-v="W" data-i="week"></button><button data-v="M" class="on" data-i="month"></button></div>
 <label class="ctl"><span data-i="plant"></span> <select id="rPl"></select></label><label class="ctl"><span data-i="macro"></span> <select id="rMc"></select></label>
@@ -210,7 +217,7 @@ const MC=D.dict.Prod.map(p=>{const f=D.fam[p],n=p.toUpperCase();
  if(f==="Farine/Proteici")return n.startsWith("SOIA")?3:4;
  if(/^(CRUSCA|FARINACCIO|GERME|BUCCETTE|POLPE|BISCOTTO|MELASSO|FRUMENTO FARINA|BUCCE|TREBBIE)/.test(n))return 5;return 6});
 const macroOf=pi=>MC[pi];const catOfMc=i=>(i===3||i===4)?"Farine":"Cereali";
-const GRP=["Marghera","Ravenna","Raccordati PG/CS","Bari-Brindisi","Estero","Nazionali","Da definire (Cerere)"];const GRP_EN=["Marghera","Ravenna","PG/CS rail sidings","Bari-Brindisi","Abroad","Domestic","To be defined (Cerere)"];
+const GRP=["Marghera","Ravenna","Raccordati PG/CS","Bari-Brindisi","Estero","Nazionali","Coperto: giacenza + Cerere"];const GRP_EN=["Marghera","Ravenna","PG/CS rail sidings","Bari-Brindisi","Abroad","Domestic","Covered: stock + Cerere"];
 const GRC=["var(--o0)","var(--o1)","var(--o2)","var(--o3)","var(--o4)","var(--o5)","#d4a017"];
 function grpOfHub(h){if(h==="Porto Venezia-Marghera")return 0;if(h==="Porto Ravenna")return 1;if(h.indexOf("raccordato")>=0)return 2;if(h==="Porto Bari-Brindisi")return 3;if(h.startsWith("Estero"))return 4;return 5}
 const ROUTE_GRP=[1,1,0,0,2];const FIXED=[1,3,4];const FLEX=[0,2];
@@ -288,19 +295,25 @@ function resa(pl,cat,flt,noPort){return [0,1,2,3,4].map(k=>{const tr=trR(pl,k);i
 function zeroOf(pl){return S.zeroPl[pl]!=null?S.zeroPl[pl]:OPT.it.indexOf(S.zero)}
 // ------------------------------------------------------------------ consumi e acquisti
 let PERTY={};const tyOf=k=>PERTY[k]||"fut";
-function consDef(k){const o={};const ty=tyOf(k);if(ty!=="fut")ritiriPer(k).forEach(r=>{const kk=PLANTS[r[2]]+"|"+MACROS[macroOf(r[5])];o[kk]=(o[kk]||0)+r[8]});
+// fabbisogno e da acquistare coerenti con la copertura (Esplosione rolling): per sede × macro × mese
+let CAGG=null;function covAgg(){const key=JSON.stringify([explode().key,ceAct().id,!!S.as4,S.gia]);if(CAGG&&CAGG.key===key)return CAGG.A;const A={};
+ PLANTS.forEach(p=>{A[p]={};const{L,X}=covData({pl:p});X.months.forEach(m=>A[p][m]={cons:new Array(7).fill(0),buy:new Array(7).fill(0)});L.forEach(o=>X.months.forEach(m=>{A[p][m].cons[o.mc]+=o.cons[m]||0;A[p][m].buy[o.mc]+=o.buy[m]||0}))});CAGG={key,A};return A}
+function covPer(k,p,i,f){const{g,v}=perInfo(k);const A=covAgg()[p];if(!A)return 0;if(g==="M")return A[v]?A[v][f][i]:0;
+ const ms=new Set();const s0=new Date(v+"T00:00:00Z");for(let j=0;j<7;j++){const d=new Date(s0);d.setUTCDate(s0.getUTCDate()+j);ms.add(iso(d).slice(0,7))}let s=0;ms.forEach(m=>{if(A[m])s+=A[m][f][i]*weekFrac(v,m,p)});return s}
+function consDef(k){const o={};const ty=tyOf(k);if(ty!=="past"){PLANTS.forEach(p=>MACROS.forEach((mc,i)=>{const v=covPer(k,p,i,"cons");if(v)o[p+"|"+mc]=v}));return o}if(ty!=="fut")ritiriPer(k).forEach(r=>{const kk=PLANTS[r[2]]+"|"+MACROS[macroOf(r[5])];o[kk]=(o[kk]||0)+r[8]});
  if(ty!=="past")PLANTS.forEach(p=>MACROS.forEach((mc,i)=>{const v=dmPer(k,p,i);if(v)o[p+"|"+mc]=(o[p+"|"+mc]||0)+v}));return o}
 const CD={};function consVal(m,p,mc){const k=m+"|"+p+"|"+mc;if(S.cons[k]!=null)return S.cons[k];if(!CD[m])CD[m]=consDef(m);return Math.round(CD[m][p+"|"+mc]||0)}
 // ------------------------------------------------------------------ METODO: piano per sede e mese
 function plan(m,p){const items=[];const fr=m.startsWith("W:")?12/52:1;const cap=[0,1,2,3,4].map(k=>(trR(p,k)!=null?capM(p,k)*fr:0));const capLeft=cap.slice();const fill=[0,0,0,0,0];const ty=tyOf(m);
  const need=MACROS.map((mc,i)=>consVal(m,p,mc));
  if(ty==="past"){ritiriPer(m).forEach(r=>{if(PLANTS[r[2]]!==p)return;const k=routeOfRow(r);const g=grpOfHub(D.locs[r[3]][4]);if(k>=0)fill[k]+=r[8];items.push({p,i:macroOf(r[5]),g,k,st:"R",t:r[8]})});return{items,need,cap,fill,ty}}
- const left=need.slice();
- if(ty==="cur")ritiriPer(m).forEach(r=>{if(PLANTS[r[2]]!==p)return;const k=routeOfRow(r);const i=macroOf(r[5]);if(k>=0){fill[k]+=r[8];capLeft[k]-=r[8]}left[i]-=r[8];items.push({p,i,g:grpOfHub(D.locs[r[3]][4]),k,st:"R",t:r[8]})});
- // coperto: acquisti (Cerere + manuali)
- acqNet(m).filter(a=>a.p===p).forEach(a=>{const i=a.mc;let q=a.t;const g=a.g;left[i]-=q;
-  const ks=g===0?[3,2]:g===1?[1,0]:g===2?[4]:[];ks.forEach(k=>{const x=Math.min(q,Math.max(0,capLeft[k]));if(x>0){capLeft[k]-=x;fill[k]+=x;items.push({p,i,g,k,st:"P",t:x});q-=x}});
-  if(q>0)items.push({p,i,g,k:-1,st:"P",t:q})});
+ // da acquistare = scopertura della copertura (giacenza + riporti + acquistato Cerere − consumo, cumulata); l'eventuale consumo modificato a mano sposta la scopertura
+ const left=need.map((n,i)=>Math.max(0,covPer(m,p,i,"buy")+(n-covPer(m,p,i,"cons"))));
+ if(ty==="cur")ritiriPer(m).forEach(r=>{if(PLANTS[r[2]]!==p)return;const k=routeOfRow(r);if(k>=0){fill[k]+=r[8];capLeft[k]-=r[8]}});
+ // acquisti manuali (non compresi nella copertura): riducono la scopertura e riempiono la loro via
+ let man=new Array(7).fill(0);acqPer(m).filter(a=>a.p===p&&a.g!==6).forEach(a=>{const i=a.mc;let q=a.t;man[i]+=q;left[i]=Math.max(0,left[i]-q);
+  const ks=a.g===0?[3,2]:a.g===1?[1,0]:a.g===2?[4]:[];ks.forEach(k=>{const x=Math.min(q,Math.max(0,capLeft[k]));if(x>0){capLeft[k]-=x;fill[k]+=x;items.push({p,i,g:a.g,k,st:"P",t:x});q-=x}});if(q>0)items.push({p,i,g:a.g,k:-1,st:"P",t:q})});
+ MACROS.forEach((mc,i)=>{const c=need[i]-left[i]-man[i];if(c>0.5)items.push({p,i,g:6,k:-1,st:"P",t:c})});
  for(let i=0;i<7;i++)left[i]=Math.max(0,left[i]);
  const fillRoute=(k,st)=>{const mix=MIXR[p+"|"+k];if(!mix||capLeft[k]<=0.5)return;for(let it=0;it<8&&capLeft[k]>0.5;it++){const act=mix.map((w,i)=>left[i]>0.5?w:0);const W=act.reduce((a,b)=>a+b,0);if(!W)break;let u=0;
   act.forEach((w,i)=>{if(!w)return;const q=Math.min(left[i],capLeft[k]*w/W);if(q<=0)return;left[i]-=q;u+=q;fill[k]+=q;items.push({p,i,g:ROUTE_GRP[k],k,st,t:q})});capLeft[k]-=u;if(u<0.5)break}};
@@ -320,12 +333,12 @@ function renderBuy(){const m=$("bMon").value;const {all,P}=buyItems();const X=al
  const PL=CF.p?[CF.p]:PLANTS;let need=0,cov=0;PL.forEach(p=>MACROS.forEach((mc,i)=>{if(CF.i!==""&&i!==+CF.i)return;need+=consVal(m,p,mc)}));
  cov=X.filter(x=>x.st==="P").reduce((a,x)=>a+x.t,0);const rit=X.filter(x=>x.st==="R").reduce((a,x)=>a+x.t,0);const miss=X.filter(x=>x.st!=="P"&&x.st!=="R").reduce((a,x)=>a+x.t,0);const ty=tyOf(m);const cerP=acqPer(m).filter(a=>(!CF.p||a.p===CF.p)&&(CF.i===""||a.mc===+CF.i)).reduce((s0,a)=>s0+a.t,0);
  let fc=0,ff=0;PL.forEach(p=>FIXED.forEach(k=>{fc+=P[p].cap[k];ff+=Math.min(P[p].cap[k],P[p].fill[k])}));
- const gT=CF.g!=="";const needShow=gT?cov+miss+rit:need;const lab=$("bMon").selectedOptions[0]?$("bMon").selectedOptions[0].text:m;const TYL={past:L1()?"consuntivo":"actual",cur:L1()?"in corso: ritirato + previsto":"current: received + planned",fut:L1()?"previsto (consumi DM)":"planned (DM consumption)"}[ty];
+ const gT=CF.g!=="";const needShow=gT?cov+miss+rit:need;const lab=$("bMon").selectedOptions[0]?$("bMon").selectedOptions[0].text:m;const MET=S.as4?(L1()?"metodo AS400":"AS400 method"):(L1()?"metodo simulatore":"simulator method");const TYL={past:L1()?"consuntivo":"actual",cur:(L1()?"in corso: dal giorno dopo l'elaborazione, come la copertura · ":"current: as coverage · ")+MET,fut:(L1()?"previsto, come la copertura · ":"planned, as coverage · ")+MET}[ty];
  $("bTy").innerHTML=`<span class="chip ${ty==="past"?"sC":ty==="cur"?"sB":"sA"}">${TYL}</span>`;
  if(ty==="past"){$("bTiles").innerHTML=`<div class="tile hi"><div class="l">${L1()?"Ritirato":"Received"} · ${esc(lab)}</div><div class="v">${fmt(rit)} t</div><div class="s">${L1()?"consuntivo dai ritiri":"actual receipts"}</div></div><div class="tile ok"><div class="l">${L1()?"Acquistato (Cerere)":"Purchased (Cerere)"}</div><div class="v">${fmt(cerP)} t</div><div class="s">${L1()?"contratti con consegna nel periodo":"contracts delivering in period"}</div></div><div class="tile"><div class="l">${L1()?"Differenza":"Difference"}</div><div class="v">${sg(Math.round(cerP-rit))} t</div><div class="s">${L1()?"acquistato − ritirato":"purchased − received"}</div></div>
  <div class="tile"><div class="l">${L1()?"Treni e set saturati":"Trains & sets filled"}</div><div class="v">${fmt(fc?ff/fc*100:0)}%</div><div class="s">${fmt(ff)} / ${fmt(fc)} t ${L1()?"a consuntivo":"actual"}</div></div>`;drawActs(X,P);drawBuyChart(all);drawSat(P);return}
- $("bTiles").innerHTML=`<div class="tile hi"><div class="l">${L1()?"Fabbisogno previsto":"Planned need"} · ${esc(lab)}</div><div class="v">${fmt(needShow)} t</div><div class="s">${ty==="cur"?(L1()?"ritirato finora + consumo DM dei giorni restanti":"received so far + DM for remaining days"):(L1()?"consumi DM esplosi sul periodo":"DM consumption exploded on period")}</div></div>
- <div class="tile ok"><div class="l">${L1()?"Già acquistato":"Already bought"}</div><div class="v">${fmt(cov+rit)} t</div><div class="s">${ty==="cur"?fmt(rit)+(L1()?" t già ritirate · ":" t received · "):""}${fmt(cov)} t ${L1()?"contratti Cerere":"Cerere contracts"} · ${fmt(needShow?(cov+rit)/needShow*100:0)}%</div></div>
+ $("bTiles").innerHTML=`<div class="tile hi"><div class="l">${L1()?"Fabbisogno previsto":"Planned need"} · ${esc(lab)}</div><div class="v">${fmt(needShow)} t</div><div class="s">${ty==="cur"?(L1()?"consumo dei giorni restanti del mese (= copertura acquisti)":"consumption of remaining days (= coverage)"):(L1()?"consumo del periodo (= copertura acquisti)":"period consumption (= coverage)")}</div></div>
+ <div class="tile ok"><div class="l">${L1()?"Coperto":"Covered"}</div><div class="v">${fmt(cov)} t</div><div class="s">${L1()?"giacenza + riporti + acquistato Cerere (+ manuale)":"stock + carry-over + Cerere (+ manual)"} · ${fmt(needShow?cov/needShow*100:0)}%</div></div>
  <div class="tile ko"><div class="l">${L1()?"Da comprare":"To buy"}</div><div class="v">${fmt(miss)} t</div><div class="prog" title="${fmt(cov)} / ${fmt(needShow)}"><i style="width:${needShow?cov/needShow*100:0}%;background:var(--ok)"></i><i style="width:${needShow?miss/needShow*100:0}%;background:var(--ko);opacity:.75"></i></div></div>
  <div class="tile"><div class="l">${L1()?"Treni e set saturati":"Trains & sets filled"}</div><div class="v">${fmt(fc?ff/fc*100:0)}%</div><div class="s">${fmt(ff)} / ${fmt(fc)} t ${L1()?"capacità fissa del periodo":"fixed capacity in period"}</div></div>`;
  drawActs(X,P); drawBuyChart(all);drawSat(P)}
@@ -669,7 +682,7 @@ function trTable(){const G={};Object.entries(TR.d2e).forEach(([d,e])=>{(G[e]=G[e
 function drawTr(id){const T=trTable();$(id).innerHTML=T.h;$(id+"S").textContent=T.sum}
 // vista codici distinti dei consumi DM: righe equivalenti ripartite con le quote di ottobre per sede
 function dmRowsCV(rows){if((S.cv||"E")==="E")return rows;const o=[];rows.forEach(r=>{const g=eqvOf(r[0]);distSplit(g,r[2]).forEach(([d,w])=>o.push([d,d===g&&!TR.names[d]?r[1]:trName(d),r[2],r[3]*w,r[4]*w]))});return o}
-let DMV="mat",DKX=false,DMCL={},MSORT={c:"tot",d:-1};
+let DMV="mat",DKX=false,DMCL={0:1,1:1,2:1,3:1,4:1,5:1,6:1},MSORT={c:"tot",d:-1};
 // matrice: righe = macro → materia prima, colonne = sedi (esplodibili) + totale, come il riepilogo Excel; ordinamento per colonna dentro ogni macro
 function drawDMMat(A,mn){const DMM=$("dmMM").value,DMX=$("dmMX").value==="1";
  const R={};A.forEach(x=>{const k=x.code;const o=R[k]=R[k]||{code:x.code,name:x.name,mc:dmMacro(eqvOf(x.code),x.name),pl:{},pr:0,nw:0,d:0};o.pl[x.p]=(o.pl[x.p]||{pr:0,nw:0,d:0});o.pl[x.p].pr+=x.pr;o.pl[x.p].nw+=x.nw;o.pl[x.p].d+=x.d;o.pr+=x.pr;o.nw+=x.nw;o.d+=x.d});
@@ -828,7 +841,7 @@ let RVW="cov",COVSEL=null,COVSORT={c:"cme",d:-1},DSORT={c:"tot",d:-1};
 let GGC=null;function giaGrp(){if(GGC)return GGC;const G={},C={},T={};Object.entries(GIADEF).forEach(([c,v])=>{const g=eqvOf(c);G[g]=G[g]||{};C[g]=C[g]||{};T[g]=(T[g]||0)+v.tot[1];v.pl.forEach((x,i)=>{const p=PLANTS[i];G[g][p]=(G[g][p]||0)+x[0];C[g][p]=(C[g][p]||0)+x[1]})});return GGC={G,C,T}}
 const distSplit=(g,p)=>{const sh=(p&&TR.share[g+"|"+p])||TR.share[g];return sh?Object.entries(sh):[[g,1]]};
 function siSplit(g){const ds=Object.keys(TR.d2e).filter(d=>TR.d2e[d]===g);const T=ds.reduce((a,d)=>a+(CED.si[d]||0),0);return T>0?ds.filter(d=>CED.si[d]>0).map(d=>[d,CED.si[d]/T]):distSplit(g)}
-function covData(){const X=explode();const pl=$("rPl").value,mc=$("rMc").value,q=$("rQ").value.trim().toLowerCase();const cur=X.months[0];const CV=S.cv||"E",AS=!!S.as4;const det=ceAct().kind==="det";
+function covData(op){const X=explode();const pl=op?op.pl:$("rPl").value,mc=op?"":$("rMc").value,q=op?"":$("rQ").value.trim().toLowerCase();const cur=X.months[0];const CV=op?"E":(S.cv||"E"),AS=!!S.as4;const det=ceAct().kind==="det";
  const E={};PLANTS.forEach(p=>{E[p]={}});X.days.forEach(dd=>PLANTS.forEach(p=>{E[p][dd.m]=(E[p][dd.m]||0)+dd.wt[p]}));const AD={};X.days.forEach(dd=>{if(dd.dw!==0)AD[dd.m]=(AD[dd.m]||0)+1});
  const PLs=pl?[pl]:PLANTS;const hdr=X.months.map(m=>AS?(AD[m]||0):PLs.reduce((a,p)=>a+(E[p][m]||0),0)/PLs.length);
  const C={};const get=(code,name,m0,g)=>C[code]=C[code]||{code,g:g||code,name,mc:m0,cme:0,cg:0,cg4:0,consO:{},acq:{},rip:0,rit:0,rows:[]};
@@ -850,20 +863,20 @@ function covData(){const X=explode();const pl=$("rPl").value,mc=$("rMc").value,q
  return{X,L,hdr,cur,pl,AS,CV}}
 function drawCov(){const{X,L,hdr,cur,pl,AS,CV}=covData();
  $("cvSel").selectedIndex=CV==="D"?1:0;mkSwitch("swCV","cvSel","cv_lab","cv_e","cv_d",()=>{S.cv=$("cvSel").selectedIndex?"D":"E";COVSEL=null;save();track("codici-vista",{v:S.cv});renderAll()});
- $("asSel").selectedIndex=AS?1:0;mkSwitch("swAS","asSel","as_lab","as_sim","as_400",()=>{S.as4=$("asSel").selectedIndex===1;save();track("metodo-as400",{on:S.as4});drawCov()});
+ $("asSel").selectedIndex=AS?1:0;mkSwitch("swAS","asSel","as_lab","as_sim","as_400",()=>{S.as4=$("asSel").selectedIndex===1;save();CD_reset();track("metodo-as400",{on:S.as4});drawCov()});
  const v=o=>COVSORT.c==="code"||COVSORT.c==="name"?String(o[COVSORT.c]):COVSORT.c==="first"?(o.first||"9999"):COVSORT.c.startsWith("m:")?o.st[COVSORT.c.slice(2)]:COVSORT.c==="cme"?o.cmeU:COVSORT.c==="cg"?o.cgU:o[COVSORT.c];
  L.sort((a,b)=>{const x=v(a),y=v(b);return typeof x==="string"?COVSORT.d*x.localeCompare(y):COVSORT.d*(x-y)});
  const nNeg=L.filter(o=>o.first).length,sh=L.reduce((a,o)=>a+o.short,0);
  $("covSum").innerHTML=`${L.length} ${L1()?"materie prime":"commodities"} · <b class="up">${nNeg} ${L1()?"in scopertura":"short"}</b> · ${L1()?"da acquistare":"to buy"} <b>${fmt(sh)} t</b> · GIA.INI ${fmt(L.reduce((a,o)=>a+o.gia,0))} t`;
  $("covTiles").innerHTML=`<div class="tile hi"><div class="l">${L1()?"Materie prime":"Commodities"}</div><div class="v">${L.length}</div><div class="s">${L1()?"consumo DM ∪ contratti Cerere":"DM consumption ∪ Cerere contracts"}</div></div><div class="tile ko"><div class="l">${L1()?"In scopertura nell'orizzonte":"Short within horizon"}</div><div class="v">${nNeg}</div><div class="s">${L1()?"giacenza proiettata < 0 in almeno un mese":"projected stock < 0 in at least one month"}</div></div><div class="tile"><div class="l">${L1()?"Da acquistare":"To buy"}</div><div class="v">${fmt(sh)} t</div><div class="s">${L1()?"per non andare sotto zero fino a":"to stay ≥ 0 until"} ${mLab(X.months[X.months.length-1])}</div></div><div class="tile"><div class="l">GIA.INI</div><div class="v">${fmt(L.reduce((a,o)=>a+o.gia,0))} t</div><div class="s">${L1()?"PDF giacenze 24/11 inizio giornata":"stock PDF 24/11"}${Object.keys(S.gia).length?` · ${Object.keys(S.gia).length} ${L1()?"valori inseriti a mano":"manual values"}`:""}</div></div>`;
  let cum=0;const th=(c,t0,l)=>`<th class="clk ${l?"l":""}" data-c="${c}" tabindex="0">${t0}${COVSORT.c===c?(COVSORT.d<0?" ▼":" ▲"):""}</th>`;
- let h=`<table class="cov"><thead><tr>${th("code","Cod.",1)}${th("name",L1()?"Materia prima":"Commodity",1)}${th("cme","con.me"+(AS?" <span class='chip sB'>AS400</span>":""))}${th("cg","con.g")}${th("cmeAlt",AS?(L1()?"con.me DM":"con.me DM"):"con.me AS400")}${th("gia","GIA.INI")}${th("rip",L1()?"Riporti":"Carry-over")}${X.months.map((m,i)=>{cum+=hdr[i];const c="m:"+m;return`<th class="clk" data-c="${c}" tabindex="0">${mLab(m).replace(/ (\d\d)(\d\d)$/," $2")}${COVSORT.c===c?(COVSORT.d<0?" ▼":" ▲"):""}<br><span class="muted" style="font-weight:400">${fmt(hdr[i],1)} · ${fmt(cum,1)}</span></th>`}).join("")}${th("first",L1()?"1ª scopertura":"1st shortage")}${th("short",L1()?"Da acquistare":"To buy")}</tr></thead><tbody>`;
- L.slice(0,300).forEach(o=>{h+=`<tr class="click${COVSEL===o.code?" sel":""}" data-c="${esc(o.code)}"><td class="l">${esc(o.code)}</td><td class="l"><b>${esc(o.name)}</b></td><td>${fmt(o.cmeU)}${o.fb?`<sup title="${L1()?"codice assente nel PDF AS400: consumo DM":"not in AS400 PDF: DM consumption"}">*</sup>`:""}</td><td>${fmt(o.cgU,1)}</td><td class="muted" title="Δ ${sg(Math.round(o.cmeU-o.cmeAlt))} t">${o.cmeAlt?fmt(o.cmeAlt):"—"}</td><td>${CV==="E"&&!pl?`<input type="number" class="edit gia" data-c="${esc(o.g)}" value="${S.gia[o.g]!=null?S.gia[o.g]:""}" placeholder="${fmt(o.gia)}" title="${S.gia[o.g]!=null?(L1()?"valore inserito":"entered value"):(L1()?"da PDF giacenze 24/11 (vuoto = usa PDF)":"from stock PDF 24/11")}" style="width:78px;${S.gia[o.g]!=null?"font-weight:700;color:#7030a0":""}">`:`<span title="${CV==="D"?(L1()?"giacenza del gruppo ripartita per stock Cerere / quota consumo":"group stock split"):(L1()?"PDF per sede":"PDF by plant")}">${fmt(o.gia)}</span>`}</td><td>${fmt(o.rip)}</td>${X.months.map(m=>`<td class="${o.st[m]<0?"neg":""}" title="${L1()?"acquistato":"bought"} ${fmt(o.inA[m])} · ${L1()?"consumo":"cons."} ${fmt(o.cons[m]||0)}">${fmt(o.st[m])}</td>`).join("")}<td>${o.first?mLab(o.first):"—"}</td><td>${o.short?`<b class="up">${fmt(o.short)}</b>`:"—"}</td></tr>`;if(COVSEL===o.code)h+=`<tr class="drill"><td colspan="${X.months.length+9}" style="padding:0">${covDrillHtml(o,X)}</td></tr>`});
+ let h=`<table class="cov"><thead><tr>${th("code","Cod.",1)}${th("name",L1()?"Materia prima":"Commodity",1)}${th("cme","con.me<br><span class='muted' style='font-weight:400'>"+(AS?"AS400":"DM")+"</span>")}${th("cg","con.g<br><span class='muted' style='font-weight:400'>"+(AS?"AS400":"DM")+"</span>")}${th("gia","GIA.INI")}${th("rip",L1()?"Riporti":"Carry-over")}${X.months.map((m,i)=>{cum+=hdr[i];const c="m:"+m;return`<th class="clk" data-c="${c}" tabindex="0">${mLab(m).replace(/ (\d\d)(\d\d)$/," $2")}${COVSORT.c===c?(COVSORT.d<0?" ▼":" ▲"):""}<br><span class="muted" style="font-weight:400">${fmt(hdr[i],1)} · ${fmt(cum,1)}</span></th>`}).join("")}${th("first",L1()?"1ª scopertura":"1st shortage")}${th("short",L1()?"Da acquistare":"To buy")}</tr></thead><tbody>`;
+ L.slice(0,300).forEach(o=>{h+=`<tr class="click${COVSEL===o.code?" sel":""}" data-c="${esc(o.code)}"><td class="l">${esc(o.code)}</td><td class="l"><b>${esc(o.name)}</b></td><td>${fmt(o.cmeU)}${o.fb?`<sup title="${L1()?"codice assente nel PDF AS400: consumo DM":"not in AS400 PDF: DM consumption"}">*</sup>`:""}</td><td>${fmt(o.cgU,1)}</td><td>${CV==="E"&&!pl?`<input type="number" class="edit gia" data-c="${esc(o.g)}" value="${S.gia[o.g]!=null?S.gia[o.g]:""}" placeholder="${fmt(o.gia)}" title="${S.gia[o.g]!=null?(L1()?"valore inserito":"entered value"):(L1()?"da PDF giacenze 24/11 (vuoto = usa PDF)":"from stock PDF 24/11")}" style="width:78px;${S.gia[o.g]!=null?"font-weight:700;color:#7030a0":""}">`:`<span title="${CV==="D"?(L1()?"giacenza del gruppo ripartita per stock Cerere / quota consumo":"group stock split"):(L1()?"PDF per sede":"PDF by plant")}">${fmt(o.gia)}</span>`}</td><td>${fmt(o.rip)}</td>${X.months.map(m=>`<td class="${o.st[m]<0?"neg":""}" title="${L1()?"acquistato":"bought"} ${fmt(o.inA[m])} · ${L1()?"consumo":"cons."} ${fmt(o.cons[m]||0)}">${fmt(o.st[m])}</td>`).join("")}<td>${o.first?mLab(o.first):"—"}</td><td>${o.short?`<b class="up">${fmt(o.short)}</b>`:"—"}</td></tr>`;if(COVSEL===o.code)h+=`<tr class="drill"><td colspan="${X.months.length+8}" style="padding:0">${covDrillHtml(o,X)}</td></tr>`});
  $("covTab").innerHTML=L.length?h+"</tbody></table>":`<div class="msg">${L1()?"Nessuna materia prima con i filtri correnti.":"No commodity with current filters."}</div>`;
  $("covTab").querySelectorAll(".dbox th.dclk").forEach(e=>e.onclick=ev=>{ev.stopPropagation();const c=e.dataset.c;DSORT=DSORT.c===c?{c,d:-DSORT.d}:{c,d:-1};track("copertura-drill-ordina");drawCov()});
  $("covTab").querySelectorAll(".dbox .dx").forEach(e=>e.onclick=ev=>{ev.stopPropagation();COVSEL=null;drawCov()});$("covTab").querySelectorAll("tr.drill").forEach(e=>e.onclick=ev=>ev.stopPropagation());
  $("covTab").querySelectorAll("table.cov>thead th.clk").forEach(e=>e.onclick=()=>{const c=e.dataset.c;COVSORT=COVSORT.c===c?{c,d:-COVSORT.d}:{c,d:["code","name","first"].includes(c)||c.startsWith("m:")?1:-1};drawCov()});
- $("covTab").querySelectorAll("input.gia").forEach(e=>{e.onclick=ev=>ev.stopPropagation();e.onchange=()=>{const x=parseFloat(e.value);if(isNaN(x))delete S.gia[e.dataset.c];else S.gia[e.dataset.c]=x;save();track("gia-ini");drawCov()}});
+ $("covTab").querySelectorAll("input.gia").forEach(e=>{e.onclick=ev=>ev.stopPropagation();e.onchange=()=>{const x=parseFloat(e.value);if(isNaN(x))delete S.gia[e.dataset.c];else S.gia[e.dataset.c]=x;save();CD_reset();track("gia-ini");drawCov()}});
  $("covTab").querySelectorAll("tr.click").forEach(e=>e.onclick=()=>{COVSEL=COVSEL===e.dataset.c?null:e.dataset.c;track("copertura-drill");drawCov()});
  if(COVSEL&&!L.some(o=>o.code===COVSEL))COVSEL=null}
 // scheda prodotto contestuale (sotto la riga selezionata): blocchi fissi, ordinamento delle sotto-righe dentro ogni blocco
@@ -913,7 +926,7 @@ let BG="M";function fillBPer(cur){const L=periods(BG);PERTY={};L.forEach(p=>PERT
 function fillPer(){const g=$("gran").value||"M";const cur=$("per").value;const L=g==="M"?D.dict.Mo:D.dict.Wk;$("per").innerHTML=`<option value="">${t("last12")}</option>`+L.map(v=>`<option value="${v}">${g==="M"?mLab(v):(L1()?"Sett. ":"Week ")+new Date(v+"T12:00").toLocaleDateString(L1()?"it-IT":"en-GB")}</option>`).join("");if(L.includes(cur))$("per").value=cur}
 function fillPrd(){const f=$("fam").value;const tt={};D.rows.forEach(r=>{if(f&&famOf(r[5])!==f)return;tt[r[5]]=(tt[r[5]]||0)+r[8]});const L=Object.keys(tt).sort((a,b)=>tt[b]-tt[a]);const cur=$("prd").value;$("prd").innerHTML=`<option value="">${t("all")}</option>`+L.map(i=>`<option value="${i}">${esc(D.dict.Prod[i])}</option>`).join("");if(L.includes(cur))$("prd").value=cur}
 function applyLang(){document.documentElement.lang=LANG;document.querySelectorAll("[data-i]").forEach(e=>{e.innerHTML=t(e.dataset.i)});$("bLang").textContent=L1()?"IT → EN":"EN → IT";fillSelects();renderAll()}
-let page="buy";
+let page="roll";
 document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("on",x===b));page=b.dataset.p;document.querySelectorAll(".page").forEach(s=>s.classList.toggle("on",s.id==="p-"+page));$("shared").style.display=(page==="map"||page==="par")?"block":"none";track("vista",{pagina:page});renderAll();if(page==="map"&&map)setTimeout(()=>map.invalidateSize(),50)});
 function render(){if(page!=="map"&&page!=="par")return;pillsMap();const R=F();if(page==="map"){drawMapLeg();drawKpi(R);drawPlant(R);drawMap(R);drawTL();drawSup(R)}if(page==="par")drawPareto()}
 function renderAll(){render();if(page==="buy")renderBuyAll();if(page==="dm")renderDM();if(page==="roll")renderRoll();if(page==="pc")renderPc();if(page==="prm"){drawSwitches();drawPorts()}if(page==="gui")drawGuide()}
